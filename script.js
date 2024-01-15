@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         revealButton.style.display = 'none'; // Hide the reveal button
         rememberNote.style.display = 'none'; // Hide the reveal button
 
-        let timeLeft = 25; // 25 seconds
+        let timeLeft = 15; // 25 seconds
         timerDiv.textContent = `Time left to memorize: ${timeLeft} seconds`;
         memorizeTimer = setInterval(() => {
             timeLeft--;
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 inputArea.style.display = 'block';
                 textInput.focus();
 
-                let typingTime = 15;
+                let typingTime = 30;
                 timerDiv.textContent = `Time left to type: ${typingTime} seconds`;
                 typeTimer = setInterval(() => {
                     typingTime--;
