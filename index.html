@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Game</title>
+    <script src="script.js" defer></script>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        #secret { display: none; }
+        #inputArea { display: none; }
+    </style>
+</head>
+<body>
+    <h1>Memory Game</h1>
+    <input type="number" id="numberInput" placeholder="Enter a number (0-50)" min="0" max="50">
+    <button id="revealButton">Reveal Secret</button>
+    <div id="secret"></div>
+    <div id="timer"></div>
+    <div id="inputArea">
+        <input type="text" id="textInput">
+        <button id="submit">Submit</button>
+    </div>
+    <div id="result"></div>
+</body>
+</html>
