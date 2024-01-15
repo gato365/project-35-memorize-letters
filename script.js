@@ -11,8 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let memorizeTimer;
     let typeTimer;
 
-
     function gradeInput() {
+        clearInterval(typeTimer);
+        textInput.disabled = true;
+        submitButton.disabled = true;
         const userInput = textInput.value;
         let correctChars = 0;
         for (let i = 0; i < secret.length; i++) {
@@ -23,13 +25,13 @@ document.addEventListener('DOMContentLoaded', () => {
         resultDiv.textContent = `You correctly remembered ${correctChars} characters.`;
         timerDiv.style.display = 'none'; // Hide the timer
     }
+
     revealButton.addEventListener('click', () => {
         const number = parseInt(numberInput.value);
         if (isNaN(number) || number < 0 || number > 50) {
             alert("Please enter a number between 0 and 50");
             return;
         }
-
 
         secret = number % 2 === 0 ? 'ilovetoeatpizza' : 'lveoatzazeoipti';
         secretDiv.textContent = secret;
@@ -48,16 +50,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 inputArea.style.display = 'block';
                 textInput.focus();
 
-                let typingTime = 15;
+                let typingTime = 5;
                 timerDiv.textContent = `Time left to type: ${typingTime} seconds`;
                 typeTimer = setInterval(() => {
                     typingTime--;
                     timerDiv.textContent = `Time left to type: ${typingTime} seconds`;
                     if (typingTime <= 0) {
                         clearInterval(typeTimer);
-                        textInput.disabled = true;
-                        submitButton.disabled = true;
-                        timerDiv.textContent = '';
+                        gradeInput(); // Grade the input when time runs out
                     }
                 }, 1000);
             }
@@ -65,19 +65,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     submitButton.addEventListener('click', () => {
-        clearInterval(typeTimer); // Stop the timer
-        textInput.disabled = true;
-        submitButton.disabled = true;
-        gradeInput(); // Grade the input
+        if (!textInput.disabled) { // Check if input is still enabled
+            gradeInput(); // Grade the input on button click
+        }
     });
-
-    // Modify the existing typeTimer interval function
-    if (typingTime <= 0) {
-        clearInterval(typeTimer);
-        textInput.disabled = true;
-        submitButton.disabled = true;
-        timerDiv.textContent = '';
-        gradeInput(); // Call the grading function here as well
-    }
-
 });
