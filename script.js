@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const textInput = document.getElementById('textInput');
     const resultDiv = document.getElementById('result');
     const submitButton = document.getElementById('submit');
+    const rememberNote = document.getElementById('remember');
     let secret = '';
     let memorizeTimer;
     let typeTimer;
@@ -38,8 +39,9 @@ document.addEventListener('DOMContentLoaded', () => {
         secretDiv.style.display = 'block';
         numberInput.style.display = 'none';  // Hide the number input
         revealButton.style.display = 'none'; // Hide the reveal button
+        rememberNote.style.display = 'none'; // Hide the reveal button
 
-        let timeLeft = 5; // 25 seconds
+        let timeLeft = 25; // 25 seconds
         timerDiv.textContent = `Time left to memorize: ${timeLeft} seconds`;
         memorizeTimer = setInterval(() => {
             timeLeft--;
@@ -50,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 inputArea.style.display = 'block';
                 textInput.focus();
 
-                let typingTime = 5;
+                let typingTime = 15;
                 timerDiv.textContent = `Time left to type: ${typingTime} seconds`;
                 typeTimer = setInterval(() => {
                     typingTime--;
